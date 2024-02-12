@@ -1,0 +1,5 @@
+## Link to the documentation
+
+<https://docs.gtk.org/gtk4/class.TextView.html>
+
+Note: The usage examples and functions, etc. are in C.
