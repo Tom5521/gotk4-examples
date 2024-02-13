@@ -77,7 +77,10 @@ func activate(app *gtk.Application) {
 	// Now we create a selection model, which as its name indicates,
 	// determines how the selection will be, and to that model you pass the base model,
 	// that is, StringList.
-	smodel := gtk.NewMultiSelection(model)
+	smodel := gtk.NewSingleSelection(model)
+	smodel.ConnectSelectionChanged(func(_, _ uint) {
+		fmt.Println(model.String(smodel.Selected()))
+	})
 	// Now we create the widget gtk.ListView,
 	// And we specify the factory and the selection model,
 	// which already brings with it the StringList model

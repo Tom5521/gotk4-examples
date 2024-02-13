@@ -4,7 +4,7 @@ go 1.22.0
 
 require (
 	github.com/brianvoe/gofakeit v2.2.0+incompatible
-	github.com/diamondburned/gotk4/pkg v0.2.1
+	github.com/diamondburned/gotk4/pkg v0.2.2
 )
 
 require (
