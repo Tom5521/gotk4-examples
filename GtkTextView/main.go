@@ -24,10 +24,14 @@ func activate(app *gtk.Application) {
 	box := gtk.NewBox(gtk.OrientationVertical, 6)
 
 	tv := gtk.NewTextView()
+	// We set VExpand to true for better visualization.
 	tv.SetVExpand(true)
-	tb := tv.Buffer()
 
+	// Trace the TextBuffer of the TextView
+	tb := tv.Buffer()
 	tb.SetText("Hello World!")
+
+	// Set the WrapMode to TextView.
 	tv.SetWrapMode(gtk.WrapWordChar)
 
 	button := gtk.NewButtonWithLabel("Save data")
@@ -35,6 +39,8 @@ func activate(app *gtk.Application) {
 		err := os.WriteFile(
 			"buffer.log",
 			[]byte(
+				// We get all the text from the buffer by calling tb.Text
+				// and delivering the first and the last iter.
 				tb.Text(
 					tb.StartIter(),
 					tb.EndIter(),
