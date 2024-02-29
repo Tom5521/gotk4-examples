@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 
+if [ "$1" == "" ]; then
+	echo The name of the new class is required as first argument
+	exit 1
+fi
+
 new_folder="Gtk$1"
 new_readme=$(cat ./generator/README_example.md)
 

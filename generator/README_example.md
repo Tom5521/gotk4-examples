@@ -1,5 +1,5 @@
 ## Link to the documentation
 
-<https://docs.gtk.org/gtk4/%s.html>
+<https://docs.gtk.org/gtk4/class.%s.html>
 
 Note: The usage examples and functions, etc. are in C.
