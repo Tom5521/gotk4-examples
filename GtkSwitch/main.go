@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/diamondburned/gotk4/pkg/gio/v2"
 	"github.com/diamondburned/gotk4/pkg/gtk/v4"
@@ -24,7 +25,7 @@ func activate(app *gtk.Application) {
 	gtkswitch := gtk.NewSwitch()
 	gtkswitch.ConnectStateSet(func(state bool) bool {
 		fmt.Println("Switch state:", state)
-		return true
+		return state
 	})
 
 	hbox := gtk.NewBox(gtk.OrientationHorizontal, 6)
@@ -33,6 +34,13 @@ func activate(app *gtk.Application) {
 	vbox := gtk.NewBox(gtk.OrientationVertical, 6)
 	vbox.Append(hbox)
 
-	w.SetChild(vbox)
+	a := gtk.NewRevealer()
+	a.SetChild(vbox)
+	go func() {
+		time.Sleep(4 * time.Second)
+		a.SetRevealChild(true)
+	}()
+
+	w.SetChild(a)
 	w.Show()
 }
