@@ -5,7 +5,7 @@ if [ "$1" == "" ]; then
 	exit 1
 fi
 
-new_folder="Gtk$1"
+new_folder="$1"
 new_readme=$(cat ./generator/README_example.md)
 
 mkdir -p "$new_folder"
