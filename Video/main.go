@@ -22,7 +22,7 @@ func activate(app *gtk.Application) {
 	w.SetDefaultSize(500, 500)
 	w.SetTitle("Example video")
 
-	video := gtk.NewVideoForFilename("GtkVideo/video.mp4")
+	video := gtk.NewVideoForFilename("Video/video.mp4")
 
 	w.SetChild(video)
 	w.Show()
