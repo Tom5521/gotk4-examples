@@ -24,6 +24,7 @@ func PrintHi() {
 
 func activate(app *gtk.Application) {
 	w := gtk.NewApplicationWindow(app)
+	w.SetDefaultSize(500, 300)
 
 	box := gtk.NewNotebook()
 

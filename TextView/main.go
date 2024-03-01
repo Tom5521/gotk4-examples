@@ -20,6 +20,7 @@ func main() {
 
 func activate(app *gtk.Application) {
 	w := gtk.NewApplicationWindow(app)
+	w.SetDefaultSize(870, 470)
 
 	box := gtk.NewBox(gtk.OrientationVertical, 6)
 

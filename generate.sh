@@ -11,7 +11,7 @@ if [ -d "$1" ]; then
 fi
 
 new_folder="$1"
-new_readme=$(cat ./generator/README_example.md)
+new_readme=$(cat generator/README_example.md)
 
 mkdir -p "$new_folder"
 printf "$new_readme" "$1" >"$new_folder/README.md"

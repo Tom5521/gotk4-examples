@@ -21,6 +21,7 @@ func main() {
 
 func activate(app *gtk.Application) {
 	w := gtk.NewApplicationWindow(app)
+	w.SetDefaultSize(870, 470)
 
 	// gtk.StringList is a structure that,
 	// as you would expect, creates a list model based on a slice of strings.

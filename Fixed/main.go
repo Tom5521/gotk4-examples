@@ -20,6 +20,7 @@ func main() {
 
 func activate(app *gtk.Application) {
 	w := gtk.NewApplicationWindow(app)
+	w.SetDefaultSize(600, 600)
 
 	// GtkFixed places its child widgets at fixed positions and with fixed sizes.
 	// GtkFixed performs no automatic layout management.

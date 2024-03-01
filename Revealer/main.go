@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/diamondburned/gotk4/pkg/gio/v2"
@@ -24,6 +25,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 func activate(app *gtk.Application) {
 	w := gtk.NewApplicationWindow(app)
+	w.SetDefaultSize(650, 500)
 
 	tv := gtk.NewTextView()
 	tv.SetVExpand(true)
@@ -34,11 +36,22 @@ func activate(app *gtk.Application) {
 
 	revealer := gtk.NewRevealer()
 	revealer.SetChild(tv)
+	revealer.SetVExpand(true)
+
+	label := gtk.NewLabel("")
+
+	box := gtk.NewBox(gtk.OrientationVertical, 6)
+	box.Append(revealer)
+	box.Append(label)
+
 	go func() {
-		time.Sleep(4 * time.Second)
+		for i := range 10 {
+			label.SetText("Revealing in " + strconv.Itoa(10-i))
+			time.Sleep(time.Second)
+		}
 		revealer.SetRevealChild(true)
 	}()
 
-	w.SetChild(revealer)
+	w.SetChild(box)
 	w.Show()
 }

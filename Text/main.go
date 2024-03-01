@@ -22,6 +22,7 @@ const loremIpsum string = "Lorem ipsum"
 
 func activate(app *gtk.Application) {
 	w := gtk.NewApplicationWindow(app)
+	w.SetDefaultSize(350, 70)
 
 	// Unlike a label, this text can be selected and/or edited.
 	// The GtkText widget is a single-line text entry widget.

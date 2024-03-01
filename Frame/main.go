@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"strconv"
 
 	"github.com/diamondburned/gotk4/pkg/gio/v2"
 	"github.com/diamondburned/gotk4/pkg/gtk/v4"
@@ -21,5 +22,17 @@ func activate(app *gtk.Application) {
 	w := gtk.NewApplicationWindow(app)
 	w.SetDefaultSize(400, 500)
 
+	box := gtk.NewBox(gtk.OrientationVertical, 1)
+	for i := range 10 {
+		box.Append(gtk.NewButtonWithLabel("Button " + strconv.Itoa(i)))
+	}
+
+	// GtkFrame is a widget that surrounds its child with a decorative frame and an optional label.
+	frame := gtk.NewFrame("Buttons frame!")
+	frame.SetLabelWidget(gtk.NewButtonWithLabel("Buttons!"))
+	frame.SetLabelAlign(0.5)
+	frame.SetChild(box)
+
+	w.SetChild(frame)
 	w.Show()
 }
