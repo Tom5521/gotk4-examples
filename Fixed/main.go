@@ -31,7 +31,7 @@ func activate(app *gtk.Application) {
 	// and other display bugs.
 	fixed := gtk.NewFixed()
 
-	setController := func(widget gtk.Widgetter) *gtk.EventControllerMotion {
+	makeController := func(widget gtk.Widgetter) *gtk.EventControllerMotion {
 		// We create a new controller.
 		controller := gtk.NewEventControllerMotion()
 		controller.ConnectEnter(func(_, _ float64) {
@@ -45,7 +45,7 @@ func activate(app *gtk.Application) {
 	}
 	newLabel := func(text string) *gtk.Label {
 		l := gtk.NewLabel(text)
-		l.AddController(setController(l))
+		l.AddController(makeController(l))
 		return l
 	}
 
@@ -53,7 +53,7 @@ func activate(app *gtk.Application) {
 	button.ConnectClicked(func() {
 		button.SetLabel("How do you clicked me?")
 	})
-	button.AddController(setController(button))
+	button.AddController(makeController(button))
 
 	fixed.Put(button, 200, 200)
 	fixed.Put(newLabel("Hi world!"), 200, 300)
