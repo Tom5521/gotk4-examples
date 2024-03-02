@@ -32,36 +32,47 @@ func activate(app *gtk.Application) {
 	// and other display bugs.
 	fixed := gtk.NewFixed()
 
-	makeController := func(widget gtk.Widgetter) *gtk.EventControllerMotion {
-		// We create a new controller.
-		controller := gtk.NewEventControllerMotion()
-		controller.ConnectEnter(func(_, _ float64) {
-			// Create the new coordinates for the widget based on the window size.
-			// And I subtract 20 pixels to prevent the widget from being
-			// able to protrude too much from the edge of the window.
-			newX := float64(rand.N(w.Width())) - 20
-			newY := float64(rand.N(w.Height())) - 20
-			// Apply the new coordinates.
-			fixed.Move(widget, newX, newY)
-		})
-		return controller
-	}
-	newLabel := func(text string) *gtk.Label {
-		l := gtk.NewLabel(text)
-		l.AddController(makeController(l))
-		return l
+	// I make a function to avoid repeating many times the same code.
+	addController := func(widget AddControllerer) {
+		MakeRandomMoveController(widget, w, fixed)
 	}
 
 	button := gtk.NewButtonWithLabel("Click Me!")
 	button.ConnectClicked(func() {
 		button.SetLabel("How do you clicked me?")
 	})
-	button.AddController(makeController(button))
+	addController(button)
+
+	label1 := gtk.NewLabel("Hi world!")
+	addController(label1)
+	label2 := gtk.NewLabel("Hi world! (2)")
+	addController(label2)
 
 	fixed.Put(button, 200, 200)
-	fixed.Put(newLabel("Hi world!"), 200, 300)
-	fixed.Put(newLabel("Hi world! (2)"), 500, 400)
+	fixed.Put(label1, 200, 300)
+	fixed.Put(label2, 500, 400)
 
 	w.SetChild(fixed)
 	w.Show()
+}
+
+type AddControllerer interface {
+	gtk.Widgetter
+	AddController(gtk.EventControllerer)
+}
+
+func MakeRandomMoveController(widget AddControllerer, w *gtk.ApplicationWindow, fixed *gtk.Fixed) {
+	// We create a new controller.
+	controller := gtk.NewEventControllerMotion()
+	controller.ConnectEnter(func(_, _ float64) {
+		// Create the new coordinates for the widget based on the window size.
+		// And I subtract 30 pixels to prevent the widget from being
+		// able to protrude too much from the edge of the window.
+		newX := float64(rand.N(w.Width() - 30))
+		newY := float64(rand.N(w.Height() - 30))
+		// Apply the new coordinates.
+		fixed.Move(widget, newX, newY)
+	})
+	// Now we add the controller to the widget
+	widget.AddController(controller)
 }
