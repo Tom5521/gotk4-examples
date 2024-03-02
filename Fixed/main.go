@@ -37,8 +37,10 @@ func activate(app *gtk.Application) {
 		controller := gtk.NewEventControllerMotion()
 		controller.ConnectEnter(func(_, _ float64) {
 			// Create the new coordinates for the widget based on the window size.
-			newX := float64(rand.N(w.Width()))
-			newY := float64(rand.N(w.Height()))
+			// And I subtract 20 pixels to prevent the widget from being
+			// able to protrude too much from the edge of the window.
+			newX := float64(rand.N(w.Width())) - 20
+			newY := float64(rand.N(w.Height())) - 20
 			// Apply the new coordinates.
 			fixed.Move(widget, newX, newY)
 		})
