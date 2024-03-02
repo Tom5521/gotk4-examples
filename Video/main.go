@@ -1,3 +1,5 @@
+//go:generate youtube-dl https://www.youtube.com/watch?v=Elj4zDLqJvw -o video
+
 package main
 
 import (
@@ -22,7 +24,7 @@ func activate(app *gtk.Application) {
 	w.SetDefaultSize(500, 500)
 	w.SetTitle("Example video")
 
-	video := gtk.NewVideoForFilename("Video/video.mp4")
+	video := gtk.NewVideoForFilename("Video/video.mkv")
 
 	w.SetChild(video)
 	w.Show()
