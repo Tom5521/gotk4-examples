@@ -12,5 +12,5 @@ The dependencies are simply the gotk4 library itself and gofakeit for filling in
 ### The widget names are as they would be in the [GTK](https://docs.gtk.org/gtk4/index.html) documentation
 
 These examples were created using
-[this](https://www.youtube.com/playlist?list=PLktUhe9IVwD9lUpsB8rdiZeyF4EWLYsBw)
+[this](https://www.youtube.com/playlist?list=PLpShJAhHjyQw2GzSPxU_M5DDFQg_Ha3kB)
 playlist
