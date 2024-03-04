@@ -36,11 +36,13 @@ func activate(app *gtk.Application) {
 	revealer := gtk.NewRevealer()
 	revealer.SetChild(tv)
 	revealer.SetVExpand(true)
+	revealerbox := gtk.NewScrolledWindow()
+	revealerbox.SetChild(revealer)
 
 	label := gtk.NewLabel("")
 
 	box := gtk.NewBox(gtk.OrientationVertical, 6)
-	box.Append(revealer)
+	box.Append(revealerbox)
 	box.Append(label)
 
 	go func() {
